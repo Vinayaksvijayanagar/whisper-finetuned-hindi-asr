@@ -15,11 +15,11 @@
 
 <!-- Demo Links -->
 <p>
-  <a href="https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID">
+  <a href="https://colab.research.google.com/drive/1zB59dZdgotSDycIOBdoH1D6F01WiKS73?usp=drive_link">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="28"/>
   </a>
   &nbsp;&nbsp;
-  <a href="https://youtu.be/YOUR_VIDEO_ID">
+  <a href="https://drive.google.com/file/d/184rv4UVNuBrY1YvQcvgI3mWSUkUB_NR-/view?usp=drive_link">
     <img src="https://img.shields.io/badge/▶%20Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white" height="28"/>
   </a>
 </p>
@@ -28,7 +28,7 @@
 
 ---
 
-## 🎯 What is this?
+##  What is this?
 
 > Fine-tuning **OpenAI Whisper Small** on **Mozilla Common Voice Hindi** dataset to improve Hindi speech recognition accuracy — built as part of the **MySivi AI Engineer Intern Assignment**.
 
@@ -36,14 +36,14 @@ MySivi is a Y-Combinator backed English learning app used by **10M+ Hindi speake
 
 ---
 
-## 📊 Results
+##  Results
 
 <div align="center">
 
 | Metric | Base Whisper Small | Fine-tuned | Improvement |
 |:------:|:-----------------:|:----------:|:-----------:|
-| **WER** (↓ better) | XX% | XX% | 🟢 ↓ XX% |
-| **CER** (↓ better) | XX% | XX% | 🟢 ↓ XX% |
+| **WER** (↓ better) | 101.18% | 47.15%| 🟢 ↓ +54.03%|
+| **CER** (↓ better) | 68.34% | 17.13% | 🟢 ↓ +51.21% |
 
 *Evaluated on 300 held-out test samples never seen during training*
 
@@ -51,15 +51,15 @@ MySivi is a Y-Combinator backed English learning app used by **10M+ Hindi speake
 
 ---
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 hindi-stt-whisper/
 │
-├── 📓 colab_training.py      # All Colab training cells
-├── 🖥️  app.py                # Streamlit UI (base vs fine-tuned side by side)
-├── 📋 requirements.txt       # Python dependencies
-├── 📄 README.md              # You are here
+├──  colab_training.py      # All Colab training cells
+├──  app.py                # Streamlit UI (base vs fine-tuned side by side)
+├──  requirements.txt       # Python dependencies
+├──  README.md              # You are here
 │
 └── model/                    # Fine-tuned model weights (download from Drive)
     ├── config.json
@@ -70,15 +70,15 @@ hindi-stt-whisper/
 
 ---
 
-## 🧠 Model Selection — Why Whisper Small?
+## Model Selection — Why Whisper Small?
 
 I evaluated 3 candidate models:
 
 | Model | Hindi Support | Fits Free GPU | Decision |
 |-------|:------------:|:-------------:|:--------:|
-| **Whisper Small** ✅ | ✅ Multilingual | ✅ 244M params | **Selected** |
-| Wav2Vec2 (Facebook) | ⚠️ Partial | ✅ Yes | Complex tokenizer setup |
-| Whisper Large V3 | ✅ Yes | ❌ 1.5B — OOM on T4 | Too large |
+| **Whisper Small**  |  Multilingual |  244M params | **Selected** |
+| Wav2Vec2 (Facebook) | Partial |  Yes | Complex tokenizer setup |
+| Whisper Large V3 |  Yes | 1.5B — OOM on T4 | Too large |
 
 **Key reasons for Whisper Small:**
 - Already pre-trained on multilingual data including Hindi — strong base
@@ -88,7 +88,7 @@ I evaluated 3 candidate models:
 
 ---
 
-## 📦 Dataset — Mozilla Common Voice 11 (Hindi)
+##  Dataset — Mozilla Common Voice 11 (Hindi)
 
 ```python
 dataset = load_dataset("mozilla-foundation/common_voice_11_0", "hi")
@@ -100,14 +100,14 @@ dataset = load_dataset("mozilla-foundation/common_voice_11_0", "hi")
 | Test | 300 | Evaluation only — never seen during training |
 
 **Why Common Voice?**
-- ✅ Open-source, no licensing restrictions
-- ✅ Pre-split train/validation/test — clean evaluation
-- ✅ Community-validated by real reviewers
-- ✅ Native speaker recordings — natural pronunciation
+-  Open-source, no licensing restrictions
+-  Pre-split train/validation/test — clean evaluation
+-  Community-validated by real reviewers
+-  Native speaker recordings — natural pronunciation
 
 ---
 
-## ⚙️ Training Configuration
+##  Training Configuration
 
 ```python
 training_args = Seq2SeqTrainingArguments(
@@ -124,11 +124,11 @@ training_args = Seq2SeqTrainingArguments(
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Run training on Google Colab (free T4 GPU)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/YOUR_NOTEBOOK_ID)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1zB59dZdgotSDycIOBdoH1D6F01WiKS73?usp=drive_link)
 
 ```
 Runtime → Change runtime type → T4 GPU
@@ -156,33 +156,12 @@ App opens at **http://localhost:8501**
 
 ---
 
-## 🖥️ Streamlit UI Features
+## Streamlit UI Features
 
-<div align="center">
-
-```
-┌─────────────────────────────────────────────────────────┐
-│          🎙️  Hindi Speech-to-Text                       │
-│         Fine-tuned Whisper Small                         │
-├──────────────────────┬──────────────────────────────────┤
-│  📊 WER / CER Results (top panel)                       │
-├──────────────────────┴──────────────────────────────────┤
-│  🎤 Record Audio  │  📁 Upload Audio File               │
-├──────────────────────────────────────────────────────────┤
-│       🚀 Transcribe Now button                           │
-├──────────────────┬───────────────────────────────────────┤
-│  Base Whisper    │  Fine-tuned Model                    │
-│  (original)      │  (your trained model)                │
-│  मेन घर जाता हूँ  │  मैं घर जाता हूँ ✅                │
-└──────────────────┴───────────────────────────────────────┘
-```
-
-</div>
-
-- 🎤 **Microphone recording** — speak directly into browser
-- 📁 **File upload** — supports `.wav` and `.mp3`
-- ⚡ **Side-by-side comparison** — base vs fine-tuned in real time
-- 📊 **WER/CER dashboard** — results visible at top
+- **Microphone recording** — speak directly into browser
+-  **File upload** — supports `.wav` and `.mp3`
+-  **Side-by-side comparison** — base vs fine-tuned in real time
+-  **WER/CER dashboard** — results visible at top
 
 ---
 
@@ -199,7 +178,7 @@ After evaluating 300 test samples, remaining errors fall into these categories:
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 
 - [ ] Train on full dataset (6,000+ clips) — limited by Colab session time
 - [ ] Add **Hinglish training data** — critical for MySivi's real users
@@ -211,7 +190,7 @@ After evaluating 300 test samples, remaining errors fall into these categories:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 <div align="center">
 
@@ -226,7 +205,7 @@ After evaluating 300 test samples, remaining errors fall into these categories:
 
 ---
 
-## 📁 Dependencies
+##  Dependencies
 
 ```txt
 transformers>=4.38.0
@@ -244,15 +223,7 @@ streamlit-audiorecorder>=0.0.4
 
 ---
 
-## 🏢 About This Assignment
 
-Built for **MySivi** (YC W22) — one of India's fastest-growing AI-powered English learning apps with 10M+ users.
-
-> For a product like MySivi where users practice English by speaking aloud, an accurate Hindi STT layer is essential — it needs to understand what the user *meant* to say, not just what they said perfectly. This fine-tuning task directly mirrors that real-world challenge.
-
----
-
-<div align="center">
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d4f2e,100:1a7f4b&height=100&section=footer" width="100%"/>
 
