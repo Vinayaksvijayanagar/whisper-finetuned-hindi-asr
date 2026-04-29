@@ -136,26 +136,6 @@ Then run all cells top to bottom
 Training time: ~1-3 hours
 ```
 
-### 2. Run Streamlit UI locally
-
-```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/hindi-stt-whisper.git
-cd hindi-stt-whisper
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Copy your trained model from Google Drive into ./model/ folder
-
-# Launch the app
-streamlit run app.py
-```
-
-App opens at **http://localhost:8501**
-
----
-
 ## Streamlit UI Features
 
 - **Microphone recording** — speak directly into browser
