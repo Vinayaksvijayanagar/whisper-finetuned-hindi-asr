@@ -30,9 +30,7 @@
 
 ##  What is this?
 
-> Fine-tuning **OpenAI Whisper Small** on **Mozilla Common Voice Hindi** dataset to improve Hindi speech recognition accuracy — built as part of the **MySivi AI Engineer Intern Assignment**.
-
-MySivi is a Y-Combinator backed English learning app used by **10M+ Hindi speakers** in India. Accurate Hindi STT is critical for features like pronunciation feedback and conversation practice.
+> Fine-tuning **OpenAI Whisper Small** on **Mozilla Common Voice Hindi** dataset to improve Hindi speech recognition accuracy 
 
 ---
 
@@ -207,6 +205,6 @@ streamlit-audiorecorder>=0.0.4
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d4f2e,100:1a7f4b&height=100&section=footer" width="100%"/>
 
-**Submitted to:** hiring@mysivi.ai &nbsp;|&nbsp; **MySivi AI Engineer Intern Assignment**
+**Submitted to:** hiring@mysivi.ai &nbsp;|&nbsp; 
 
 </div>
